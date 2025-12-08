@@ -1,0 +1,82 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36" version="29.2.5">
+  <diagram name="Page-1" id="bRM7KGLdrIEglATibFcu">
+    <mxGraphModel dx="1226" dy="-2639" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="1Tc8gcYFUUAvvvzt9dj4-77" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=65;" value="Utilisateur (Client)" vertex="1">
+          <mxGeometry height="905" width="150" x="132" y="3540" as="geometry" />
+        </mxCell>
+        <mxCell id="1Tc8gcYFUUAvvvzt9dj4-78" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=65;" value="Serveur (UDP:3333)" vertex="1">
+          <mxGeometry height="905" width="156" x="472" y="3540" as="geometry" />
+        </mxCell>
+        <mxCell id="1Tc8gcYFUUAvvvzt9dj4-79" edge="1" parent="1" source="1Tc8gcYFUUAvvvzt9dj4-77" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;" target="1Tc8gcYFUUAvvvzt9dj4-78" value="&quot;alice,1234,LOGIN&quot;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="387" y="3697" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1Tc8gcYFUUAvvvzt9dj4-80" edge="1" parent="1" source="1Tc8gcYFUUAvvvzt9dj4-78" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;" target="1Tc8gcYFUUAvvvzt9dj4-77" value="&quot;serveur,OK,Bienvenue&quot;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="390" y="3799" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1Tc8gcYFUUAvvvzt9dj4-81" edge="1" parent="1" source="1Tc8gcYFUUAvvvzt9dj4-77" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;" target="1Tc8gcYFUUAvvvzt9dj4-78" value="&quot;alice,1234,MESSAGE,bob,Salut,Ca va?&quot;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="387" y="3901" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1Tc8gcYFUUAvvvzt9dj4-82" edge="1" parent="1" source="1Tc8gcYFUUAvvvzt9dj4-78" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;" target="1Tc8gcYFUUAvvvzt9dj4-77" value="&quot;serveur,OK,Envoye&quot;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="390" y="4003" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1Tc8gcYFUUAvvvzt9dj4-83" edge="1" parent="1" source="1Tc8gcYFUUAvvvzt9dj4-77" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;" target="1Tc8gcYFUUAvvvzt9dj4-78" value="&quot;alice,1234,lecture&quot;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="387" y="4153" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1Tc8gcYFUUAvvvzt9dj4-84" edge="1" parent="1" source="1Tc8gcYFUUAvvvzt9dj4-78" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;" target="1Tc8gcYFUUAvvvzt9dj4-77" value="&quot;serveur,MESSAGES,bob,Reponse,Oui!&quot;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="390" y="4292" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1Tc8gcYFUUAvvvzt9dj4-85" parent="1" style="fillColor=#ffff88;strokeColor=#9E916F;" value="1. CONNEXION &amp; MISE A JOUR IP" vertex="1">
+          <mxGeometry height="48" width="393" x="182" y="3615" as="geometry" />
+        </mxCell>
+        <mxCell id="1Tc8gcYFUUAvvvzt9dj4-86" parent="1" style="fillColor=#ffff88;strokeColor=#9E916F;" value="Le serveur enregistre l&#39;IP d&#39;Alice" vertex="1">
+          <mxGeometry height="48" width="243" x="575" y="3717" as="geometry" />
+        </mxCell>
+        <mxCell id="1Tc8gcYFUUAvvvzt9dj4-87" parent="1" style="fillColor=#ffff88;strokeColor=#9E916F;" value="2. ENVOI DE MESSAGE" vertex="1">
+          <mxGeometry height="48" width="393" x="182" y="3819" as="geometry" />
+        </mxCell>
+        <mxCell id="1Tc8gcYFUUAvvvzt9dj4-88" parent="1" style="fillColor=#ffff88;strokeColor=#9E916F;" value="Stocke &quot;Salut&quot; dans la mémoire de Bob" vertex="1">
+          <mxGeometry height="48" width="295" x="575" y="3921" as="geometry" />
+        </mxCell>
+        <mxCell id="1Tc8gcYFUUAvvvzt9dj4-89" parent="1" style="fillColor=#ffff88;strokeColor=#9E916F;" value="3. POLLING (Lecture automatique 10s)" vertex="1">
+          <mxGeometry height="48" width="393" x="182" y="4023" as="geometry" />
+        </mxCell>
+        <mxCell id="1Tc8gcYFUUAvvvzt9dj4-90" parent="1" style="fillColor=#ffff88;strokeColor=#9E916F;" value="Timer 10 secondes..." vertex="1">
+          <mxGeometry height="48" width="162" x="20" y="4071" as="geometry" />
+        </mxCell>
+        <mxCell id="1Tc8gcYFUUAvvvzt9dj4-91" parent="1" style="fillColor=#ffff88;strokeColor=#9E916F;" value="1. Vérifie le password&#xa;2. Met à jour l&#39;IP (Double Connexion)&#xa;3. Récupère les messages" vertex="1">
+          <mxGeometry height="85" width="280" x="575" y="4173" as="geometry" />
+        </mxCell>
+        <mxCell id="1Tc8gcYFUUAvvvzt9dj4-92" parent="1" style="fillColor=#ffff88;strokeColor=#9E916F;" value="La mémoire des messages est vidée" vertex="1">
+          <mxGeometry height="48" width="272" x="575" y="4312" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
