@@ -4,21 +4,18 @@ import java.util.ArrayList;
 
 public class MemoireServeur {
 
-    // This List acts as your Database in RAM
+    [cite_start]// This List acts as your Database in RAM
     public static ArrayList<Utilisateur> tousLesUtilisateurs = new ArrayList<>();
 
     // Initialize with some test data
     public static void init() {
-        // Create 2 test users so we can test login immediately
-        Utilisateur u1 = new Utilisateur("alice", "1234");
-        Utilisateur u2 = new Utilisateur("bob", "pass");
-
-        tousLesUtilisateurs.add(u1);
-        tousLesUtilisateurs.add(u2);
+        // Create test users so we can test login immediately
+        tousLesUtilisateurs.add(new Utilisateur("alice", "1234"));
+        tousLesUtilisateurs.add(new Utilisateur("bob", "pass"));
         System.out.println("Base de données RAM initialisée avec Alice et Bob.");
     }
 
-    //Find a user by their email
+    // Helper: Find a user by their email
     public static Utilisateur trouverUtilisateur(String email) {
         for (Utilisateur u : tousLesUtilisateurs) {
             if (u.email.equals(email)) {
@@ -26,5 +23,70 @@ public class MemoireServeur {
             }
         }
         return null; // User not found
+    }
+
+    // --- MISSING METHODS ADDED BELOW ---
+
+    // Called by "CONNEXION" command
+    public static String connecterUtilisateur(String login, String password) {
+        Utilisateur u = trouverUtilisateur(login);
+        [cite_start]// Check if user exists AND if password matches (stored in clear text) [cite: 156]
+        if (u != null && u.motDePasse.equals(password)) {
+            return "serveur, OK_CONNEXION";
+        }
+        return "serveur, ERREUR, Login ou MDP incorrect";
+    }
+
+    // Called by "MESSAGE" command
+    public static String posterMessage(String expediteur, String destinataire, String sujet, String corps) {
+        // 1. Find the recipient
+        Utilisateur uDest = trouverUtilisateur(destinataire);
+
+        if (uDest == null) {
+            return "serveur, ERREUR, Destinataire inconnu";
+        }
+
+        // 2. Format the message string
+        String messageComplet = "De: " + expediteur + " | Sujet: " + sujet + " | " + corps;
+
+        [cite_start]// 3. Store it in their RAM buffer
+        // This relies on the 'ajouterMessage' method inside Utilisateur.java
+        uDest.ajouterMessage(messageComplet);
+
+        return "serveur, MSG_ENVOYE";
+    }
+
+    // Called by "LECTURE" command
+    public static String recupererMessages(String login) {
+        Utilisateur u = trouverUtilisateur(login);
+        if (u == null) return "serveur, ERREUR, Utilisateur inconnu";
+
+        // Convert the ArrayList of messages to a String to send back
+        // Format: [msg1, msg2, msg3]
+        if (u.boiteReception.isEmpty()) {
+            return "serveur, MESSAGES, Aucuns nouveaux messages";
+        }
+
+        return "serveur, MESSAGES, " + u.boiteReception.toString();
+    }
+
+    // Called by "DEMANDE_AMI" command
+    public static String ajouterAmi(String login, String amiEmail) {
+        Utilisateur moi = trouverUtilisateur(login);
+        Utilisateur ami = trouverUtilisateur(amiEmail);
+
+        // Basic checks
+        if (moi == null) return "serveur, ERREUR, Vous n'existez pas";
+        if (ami == null) return "serveur, ERREUR, Ami introuvable";
+        if (login.equals(amiEmail)) return "serveur, ERREUR, Narcissisme interdit";
+
+        [cite_start]// Call the Utilisateur logic (which handles the max 4 limit) [cite: 160]
+        boolean succes = moi.ajouterAmi(amiEmail);
+
+        if (succes) {
+            return "serveur, AMI_AJOUTE";
+        } else {
+            return "serveur, ERREUR, Liste d'amis pleine (Max 4)";
+        }
     }
 }

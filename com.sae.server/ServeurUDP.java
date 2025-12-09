@@ -8,7 +8,7 @@ import java.nio.charset.StandardCharsets;
 
 public class ServeurUDP {
 
-    // Port 3333 as requested in the objectives [cite: 153]
+    // Port 3333 as requested in the objectives
     static final int port = 3333;
 
     public static void main(String args[]) throws SocketException, IOException {
@@ -32,7 +32,7 @@ public class ServeurUDP {
             String response = "serveur, ERREUR, Format invalide"; // Default
 
             // Split by comma
-            // Protocol format: "login, commande, parametre1, ..." [cite: 150]
+            // Protocol format: "login, commande, parametre1, ..."
             String[] parts = s.split(",");
 
             if (parts.length >= 2) {
@@ -68,7 +68,7 @@ public class ServeurUDP {
                             // Safety check + 1 for comma
                             String corps = (indexStart + 1 < s.length()) ? s.substring(indexStart + 1).trim() : "";
 
-                            // Logic for "TOUS" or specific user [cite: 164] handled in MemoireServeur
+                            // Logic for "TOUS" or specific user handled in MemoireServeur
                             response = MemoireServeur.posterMessage(login, dest, sujet, corps);
                         } else {
                             response = "serveur, ERREUR, Paramètres manquants (Destinataire, Sujet, Corps)";
