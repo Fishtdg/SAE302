@@ -15,7 +15,7 @@ public class ServeurUDP {
                     new DatagramPacket(buffer, buffer.length);
             socket.receive(packet) ; //he program stops (blocks) at this line and waits until a client sends a message
             s = new String(buffer, 0, 0, packet.getLength()) ;
-            System.out.println(s) ;
+            System.out.println(s) ; //tet
         }
     }
 }
