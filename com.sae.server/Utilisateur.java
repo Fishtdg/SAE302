@@ -1,32 +1,40 @@
-package com.sae.server;
+package com.sae.server; // Make sure this matches your package
 
 import java.util.ArrayList;
 
-public class MemoireServeur {
-    [cite_start]// Stores users in RAM
-    private static ArrayList<Utilisateur> utilisateurs = new ArrayList<>();
+public class Utilisateur {
+    // Attributes
+    public String email;
+    public String motDePasse; // Stored in clear text
 
-    public static void init() {
-        // Initialize with test data if needed
+    // Constraints: Max 4 items
+    public ArrayList<String> listeAmis;
+    public ArrayList<String> boiteReception;
+
+    // Constructor
+    public Utilisateur(String email, String motDePasse) {
+        this.email = email;
+        this.motDePasse = motDePasse;
+        this.listeAmis = new ArrayList<>();
+        this.boiteReception = new ArrayList<>();
     }
 
-    public static String connecterUtilisateur(String email, String mdp) {
-        // TODO: Check list, return "serveur, OK" or "serveur, ERROR"
-        return "serveur, OK_CONNEXION";
+    // Constraint Logic: Max 4 Messages (Circular Buffer/FIFO)
+    public void ajouterMessage(String message) {
+        if (boiteReception.size() >= 4) {
+            boiteReception.remove(0); // Remove the oldest message
+        }
+        boiteReception.add(message);
     }
 
-    public static String posterMessage(String expediteur, String dest, String sujet, String corps) {
-        [cite_start]// TODO: Find destination user, add to their buffer
-        return "serveur, MSG_ENVOYE";
-    }
-
-    public static String recupererMessages(String login) {
-        [cite_start]// TODO: Return messages from buffer and clear them
-        return "serveur, LISTE_MESSAGES, []";
-    }
-
-    public static String ajouterAmi(String login, String ami) {
-        [cite_start]// TODO: Add friend logic
-        return "serveur, AMI_AJOUTE";
+    // Constraint Logic: Max 4 Friends
+    public boolean ajouterAmi(String emailAmi) {
+        if (listeAmis.size() >= 4) {
+            return false; // List is full
+        }
+        if (!listeAmis.contains(emailAmi)) {
+            listeAmis.add(emailAmi);
+        }
+        return true;
     }
 }
