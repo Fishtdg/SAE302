@@ -109,7 +109,7 @@ public class ServeurUDP {
                 }
             }
 
-            // 4. Send Response back to Client
+            // 4. Send Response back to Client//
             // "Les messages du serveur indique 'serveur'"
             byte[] responseData = response.getBytes(StandardCharsets.UTF_8);
             DatagramPacket responsePacket = new DatagramPacket(
