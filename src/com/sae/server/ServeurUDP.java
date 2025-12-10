@@ -104,6 +104,20 @@ public class ServeurUDP {
                         }
                         break;
 
+
+                    // --- CASE: DELETE ACCOUNT ---
+                    // "Supprimer le profil" button from the wireframe
+                    case "SUPPRESSION":
+                        // Format: login, SUPPRESSION, password
+                        if (parts.length >= 3) {
+                            String password = parts[2].trim();
+                            // Call the delete method in memory
+                            response = MemoireServeur.supprimerUtilisateur(login, password);
+                        } else {
+                            response = "serveur, ERREUR, Mot de passe requis pour supprimer le compte";
+                        }
+                        break;
+
                     default:
                         response = "serveur, ERREUR, Commande inconnue";
                 }

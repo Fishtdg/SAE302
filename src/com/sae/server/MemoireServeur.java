@@ -38,6 +38,21 @@ public class MemoireServeur {
         return "serveur, ERREUR, Login ou MDP incorrect";
     }
 
+
+    // Called by "SUPPRESSION" command (from Profile Page)
+    public static String supprimerUtilisateur(String login, String password) {
+        Utilisateur u = trouverUtilisateur(login);
+
+        // Security check: Must provide password to delete account
+        if (u != null && u.motDePasse.equals(password)) {
+            tousLesUtilisateurs.remove(u);
+            System.out.println("MEMOIRE: Utilisateur supprimé -> " + login);
+            return "serveur, COMPTE_SUPPRIME";
+        }
+        return "serveur, ERREUR, Suppression impossible (MDP incorrect ?)";
+    }
+
+
     // Called by "MESSAGE" command
     public static String posterMessage(String expediteur, String destinataire, String sujet, String corps) {
         // 1. Find the recipient
@@ -67,6 +82,24 @@ public class MemoireServeur {
         }
 
         return "serveur, MESSAGES, " + u.boiteReception.toString();
+    }
+
+
+    public static String inscrireUtilisateur(String login, String password) {
+
+        if (trouverUtilisateur(login) != null) {
+            return "serveur, ERREUR, Ce login est deja pris";
+        }
+
+        // 2. Create the new user object
+        // (Assuming your Utilisateur constructor takes login and password)
+        Utilisateur nouveau = new Utilisateur(login, password);
+
+        // 3. Save to the RAM list
+        tousLesUtilisateurs.add(nouveau);
+        System.out.println("MEMOIRE: Nouvel utilisateur inscrit -> " + login);
+
+        return "serveur, INSCRIPTION_OK";
     }
 
     // Called by "DEMANDE_AMI" command
