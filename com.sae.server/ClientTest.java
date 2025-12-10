@@ -7,7 +7,6 @@ import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
-// 2. Class name matches the file name "ClientTest.java"
 public class ClientTest {
 
     static final int port = 3333; // Port matches your ServeurUDP

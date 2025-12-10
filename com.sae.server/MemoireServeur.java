@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class MemoireServeur {
 
-    [cite_start]// This List acts as your Database in RAM
+    // This List acts as your Database in RAM
     public static ArrayList<Utilisateur> tousLesUtilisateurs = new ArrayList<>();
 
     // Initialize with some test data
@@ -25,12 +25,13 @@ public class MemoireServeur {
         return null; // User not found
     }
 
-    // --- MISSING METHODS ADDED BELOW ---
+    // --- LOGIC METHODS ---
 
     // Called by "CONNEXION" command
     public static String connecterUtilisateur(String login, String password) {
         Utilisateur u = trouverUtilisateur(login);
-        [cite_start]// Check if user exists AND if password matches (stored in clear text) [cite: 156]
+
+        // Check if user exists AND if password matches (stored in clear text)
         if (u != null && u.motDePasse.equals(password)) {
             return "serveur, OK_CONNEXION";
         }
@@ -49,8 +50,7 @@ public class MemoireServeur {
         // 2. Format the message string
         String messageComplet = "De: " + expediteur + " | Sujet: " + sujet + " | " + corps;
 
-        [cite_start]// 3. Store it in their RAM buffer
-        // This relies on the 'ajouterMessage' method inside Utilisateur.java
+        // 3. Store it in their RAM buffer
         uDest.ajouterMessage(messageComplet);
 
         return "serveur, MSG_ENVOYE";
@@ -62,7 +62,6 @@ public class MemoireServeur {
         if (u == null) return "serveur, ERREUR, Utilisateur inconnu";
 
         // Convert the ArrayList of messages to a String to send back
-        // Format: [msg1, msg2, msg3]
         if (u.boiteReception.isEmpty()) {
             return "serveur, MESSAGES, Aucuns nouveaux messages";
         }
@@ -80,7 +79,7 @@ public class MemoireServeur {
         if (ami == null) return "serveur, ERREUR, Ami introuvable";
         if (login.equals(amiEmail)) return "serveur, ERREUR, Narcissisme interdit";
 
-        [cite_start]// Call the Utilisateur logic (which handles the max 4 limit) [cite: 160]
+        // Call the Utilisateur logic (which handles the max 4 limit)
         boolean succes = moi.ajouterAmi(amiEmail);
 
         if (succes) {

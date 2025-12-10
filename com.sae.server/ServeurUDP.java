@@ -1,4 +1,4 @@
-package com.mycompany.serveurudp;
+package com.sae.server;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
