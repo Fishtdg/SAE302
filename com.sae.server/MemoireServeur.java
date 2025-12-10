@@ -69,6 +69,24 @@ public class MemoireServeur {
         return "serveur, MESSAGES, " + u.boiteReception.toString();
     }
 
+
+    public static String inscrireUtilisateur(String login, String password) {
+
+        if (trouverUtilisateur(login) != null) {
+            return "serveur, ERREUR, Ce login est deja pris";
+        }
+
+        // 2. Create the new user object
+        // (Assuming your Utilisateur constructor takes login and password)
+        Utilisateur nouveau = new Utilisateur(login, password);
+
+        // 3. Save to the RAM list
+        tousLesUtilisateurs.add(nouveau);
+        System.out.println("MEMOIRE: Nouvel utilisateur inscrit -> " + login);
+
+        return "serveur, INSCRIPTION_OK";
+    }
+
     // Called by "DEMANDE_AMI" command
     public static String ajouterAmi(String login, String amiEmail) {
         Utilisateur moi = trouverUtilisateur(login);
