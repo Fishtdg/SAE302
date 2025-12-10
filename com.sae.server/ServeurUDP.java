@@ -41,7 +41,17 @@ public class ServeurUDP {
 
                 // 3. Switch Statement for REQUIRED COMMANDS
                 switch (command) {
-
+                    // --- CASE 0: REGISTRATION (NEW) ---
+                    case "INSCRIPTION":
+                        // Format: login, INSCRIPTION, password
+                        if (parts.length >= 3) {
+                            String password = parts[2].trim();
+                            // Call the new method in memory
+                            response = MemoireServeur.inscrireUtilisateur(login, password);
+                        } else {
+                            response = "serveur, ERREUR, Mot de passe manquant pour l'inscription";
+                        }
+                        break;
                     // --- CASE 1: AUTHENTICATION ---
                     // "Un utilisateur est identifié par un email et un mot de passe"
                     case "CONNEXION":
