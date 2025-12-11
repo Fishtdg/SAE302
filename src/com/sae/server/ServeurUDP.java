@@ -118,6 +118,29 @@ public class ServeurUDP {
                         }
                         break;
 
+                    // --- CASE 6: GROUP CREATION ---
+                    // Format: login, CREATION_GROUPE, NomDuGroupe
+                    case "CREATION_GROUPE":
+                        if (parts.length >= 3) {
+                            String nomGroupe = parts[2].trim();
+                            response = MemoireServeur.creerGroupe(login, nomGroupe);
+                        } else {
+                            response = "serveur, ERREUR, Nom du groupe manquant";
+                        }
+                        break;
+
+                    // --- CASE 7: ADD MEMBER TO GROUP ---
+                    // Format: login, AJOUT_MEMBRE_GROUPE, NomDuGroupe, EmailMembre
+                    case "AJOUT_MEMBRE_GROUPE":
+                        if (parts.length >= 4) {
+                            String nomGroupe = parts[2].trim();
+                            String nouveauMembre = parts[3].trim();
+                            response = MemoireServeur.ajouterMembreGroupe(login, nomGroupe, nouveauMembre);
+                        } else {
+                            response = "serveur, ERREUR, Parametres manquants (Groupe ou Membre)";
+                        }
+                        break;
+
                     default:
                         response = "serveur, ERREUR, Commande inconnue";
                 }
